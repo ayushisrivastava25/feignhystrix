@@ -1,5 +1,6 @@
 package com.ayushi.feign.circuit.breaker.controller;
 
+import com.ayushi.feign.circuit.breaker.dto.QuantityResponse;
 import com.ayushi.feign.circuit.breaker.service.QuantityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ public class QuantityController {
     }
 
     @GetMapping("/v1/quantity")
-    public ResponseEntity<Integer> getQuantityByType(@RequestParam("type") String type) {
+    public ResponseEntity<QuantityResponse> getQuantityByType(@RequestParam("type") String type) {
         return ResponseEntity.ok(quantityService.getQuantityByType(type));
     }
 }

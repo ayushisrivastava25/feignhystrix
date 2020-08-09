@@ -5,7 +5,6 @@ import com.ayushi.feign.circuit.breaker.service.ClockService;
 
 import java.util.Arrays;
 
-//@Service
 public class ClockServiceImpl implements ClockService {
 
     public ClockServiceImpl() {

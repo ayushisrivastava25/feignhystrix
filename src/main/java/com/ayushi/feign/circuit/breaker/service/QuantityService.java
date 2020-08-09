@@ -1,6 +1,8 @@
 package com.ayushi.feign.circuit.breaker.service;
 
+import com.ayushi.feign.circuit.breaker.dto.QuantityResponse;
+
 public interface QuantityService {
 
-    Integer getQuantityByType(String type);
+    QuantityResponse getQuantityByType(String type);
 }

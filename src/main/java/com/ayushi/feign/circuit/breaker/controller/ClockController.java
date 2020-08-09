@@ -15,7 +15,7 @@ public class ClockController {
         this.clockService = clockService;
     }
 
-    @GetMapping("/v1/{type}")
+    @GetMapping("/v1/clock/{type}")
     public ResponseEntity<Integer> getClockCount(@PathVariable("type") String type) {
         return ResponseEntity.ok(clockService.getClockCount(type));
     }
