@@ -3,6 +3,7 @@ package com.ayushi.feign.circuit.breaker;
 import com.ayushi.feign.circuit.breaker.clients.AppliancesClient;
 import com.ayushi.feign.circuit.breaker.clients.ClockClient;
 import com.ayushi.feign.circuit.breaker.clients.CompassClient;
+import com.ayushi.feign.circuit.breaker.clients.StoreClient;
 import com.ayushi.feign.circuit.breaker.service.ApplianceService;
 import com.ayushi.feign.circuit.breaker.service.ClockService;
 import com.ayushi.feign.circuit.breaker.service.CompassService;
