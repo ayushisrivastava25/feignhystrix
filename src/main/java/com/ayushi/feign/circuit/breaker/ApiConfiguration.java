@@ -1,17 +1,16 @@
 package com.ayushi.feign.circuit.breaker;
 
-import com.ayushi.feign.circuit.breaker.clients.AppliancesClient;
-import com.ayushi.feign.circuit.breaker.clients.ClockClient;
-import com.ayushi.feign.circuit.breaker.clients.CompassClient;
-import com.ayushi.feign.circuit.breaker.clients.StoreClient;
-import com.ayushi.feign.circuit.breaker.service.ApplianceService;
-import com.ayushi.feign.circuit.breaker.service.ClockService;
-import com.ayushi.feign.circuit.breaker.service.CompassService;
-import com.ayushi.feign.circuit.breaker.service.QuantityService;
-import com.ayushi.feign.circuit.breaker.service.impl.ApplianceServiceImpl;
-import com.ayushi.feign.circuit.breaker.service.impl.ClockServiceImpl;
-import com.ayushi.feign.circuit.breaker.service.impl.CompassServiceImpl;
-import com.ayushi.feign.circuit.breaker.service.impl.QuantityServiceImpl;
+import com.ayushi.feign.circuit.breaker.clients.FolkClient;
+import com.ayushi.feign.circuit.breaker.clients.ClassicalClient;
+import com.ayushi.feign.circuit.breaker.clients.FusionClient;
+import com.ayushi.feign.circuit.breaker.service.ClassicalClientService;
+import com.ayushi.feign.circuit.breaker.service.FolkClientService;
+import com.ayushi.feign.circuit.breaker.service.FusionClientService;
+import com.ayushi.feign.circuit.breaker.service.SongsService;
+import com.ayushi.feign.circuit.breaker.service.impl.ClassicalClientServiceImpl;
+import com.ayushi.feign.circuit.breaker.service.impl.FolkClientServiceImpl;
+import com.ayushi.feign.circuit.breaker.service.impl.FusionClientServiceImpl;
+import com.ayushi.feign.circuit.breaker.service.impl.SongsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,22 +24,22 @@ import org.springframework.context.annotation.Configuration;
 public class ApiConfiguration {
 
     @Bean
-    public ClockService clockService() {
-        return new ClockServiceImpl();
+    public SongsService songsService(ClassicalClientService classicalClientService, FolkClientService folkClientService, FusionClientService fusionClientService) {
+        return new SongsServiceImpl(classicalClientService, folkClientService, fusionClientService);
     }
 
     @Bean
-    public ApplianceService applianceService() {
-        return new ApplianceServiceImpl();
+    public ClassicalClientService classicalClientService(ClassicalClient classicalClient) {
+        return new ClassicalClientServiceImpl(classicalClient);
     }
 
     @Bean
-    public CompassService compassService() {
-        return new CompassServiceImpl();
+    public FusionClientService fusionClientService(FusionClient fusionClient) {
+        return new FusionClientServiceImpl(fusionClient);
     }
 
     @Bean
-    public QuantityService quantityService(ClockClient clockClient, AppliancesClient appliancesClient, CompassClient compassClient) {
-        return new QuantityServiceImpl(clockClient, appliancesClient, compassClient);
+    public FolkClientService folkClientService(FolkClient folkClient) {
+        return new FolkClientServiceImpl(folkClient);
     }
 }
